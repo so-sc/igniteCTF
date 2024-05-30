@@ -4,12 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/comfortaa": "^5.0.20",
+    "@fontsource/noto-sans": "^5.0.22",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -1,6 +1,13 @@
-import React from "react";
 import "./styles/global.css";
+import IntroCard from "./components/IntroCard";
+import PageLayout from "./components/PageLayout";
+import Dashboard from "./components/Dashboard";
 
 export default function App() {
-  return <div className="bg-slate-500">App</div>;
+  return (
+    <PageLayout>
+      {/* <IntroCard /> */}
+      <Dashboard />
+    </PageLayout>
+  );
 }

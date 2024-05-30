@@ -1,3 +1,13 @@
+@import '@fontsource/noto-sans/400.css';
+@import '@fontsource/noto-sans/700.css';
+@import '@fontsource-variable/comfortaa';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    @apply bg-black flex justify-center;
+    font-family: 'Comfortaa Variable';
+    font-weight: 700;
+}
