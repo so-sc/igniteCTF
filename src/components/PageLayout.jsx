@@ -12,7 +12,7 @@ export default function PageLayout({ children }) {
         className="absolute top-5 left-5"
       />
       <div className="h-28 flex" />
-      <div className="flex flex-col w-auto flex-grow text-white text-3xl">
+      <div className="flex flex-col w-auto flex-grow text-white text-3xl justify-center items-center">
         {children}
       </div>
       <div className="h-28 flex" />

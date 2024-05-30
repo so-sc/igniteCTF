@@ -3,17 +3,24 @@ import PageLayout from "./components/PageLayout";
 import Dashboard from "./components/Dashboard";
 import IntroCard from "./components/IntroCard";
 import Challenge1 from "./challenges/Challenge1";
-import { useContext, useState } from "react";
-import { PageContext } from "./components/PageContext";
+import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
-  const { pageNumber, setPageNumber } = useContext(PageContext);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <PageLayout>
-      {isLogin ? <IntroCard /> : <Dashboard />}
-      {/* <Challenge1 /> */}
-    </PageLayout>
+    <BrowserRouter>
+      <PageLayout>
+        {!isLogin ? (
+          <IntroCard />
+        ) : (
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/challenge1" element={<Challenge1 />} />
+          </Routes>
+        )}
+      </PageLayout>
+    </BrowserRouter>
   );
 }

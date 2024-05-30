@@ -2,7 +2,7 @@ import React from "react";
 
 export default function IntroCard() {
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="flex flex-col justify-center items-center">
       <h1 className="text-center">What do we call you?</h1>
       <input
         id="name-input"
