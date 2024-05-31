@@ -15,6 +15,7 @@ export default function App() {
 
   useEffect(() => {
     const user = localStorage.getItem("USER");
+    // localStorage.removeItem("USER");
     console.log(user);
     if (user) setIsLogin(true);
   }, []);
@@ -23,7 +24,7 @@ export default function App() {
     <BrowserRouter>
       <PageLayout>
         {!isLogin ? (
-          <IntroCard />
+          <IntroCard login={() => setIsLogin(true)} />
         ) : (
           <Routes>
             <Route path="/" element={<Dashboard />} />
