@@ -1,13 +1,38 @@
-@import '@fontsource/noto-sans/400.css';
-@import '@fontsource/noto-sans/700.css';
-@import '@fontsource-variable/comfortaa';
+@import "@fontsource/noto-sans/400.css";
+@import "@fontsource/noto-sans/700.css";
+@import "@fontsource-variable/comfortaa";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    @apply bg-black flex justify-center;
-    font-family: 'Comfortaa Variable';
-    font-weight: 700;
+  @apply bg-black flex justify-center;
+  font-family: "Comfortaa Variable";
+  font-weight: 700;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #4e4e4e;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #7e7e7e;
+}
+
+/* Hide scrollbar buttons (arrows) */
+::-webkit-scrollbar-button {
+  display: none;
 }

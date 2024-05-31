@@ -13,13 +13,13 @@ export default function IntroCard({ login }) {
       <h1 className="text-center">What do we call you?</h1>
       <input
         id="name-input"
-        className="rounded-lg bg-slate-900 outline-none pl-3 mt-3"
+        className="rounded-lg bg-slate-900 outline-none pl-3 mt-3 w-full"
         placeholder="Enter you name"
         style={{ fontSize: "0.9rem" }}
         onChange={(e) => setUsername(e.target.value)}
       />
       <button
-        className="outline outline-white mt-10 px-2 rounded-lg text-center"
+        className="outline outline-white mt-5 px-2 rounded-lg text-center w-full"
         style={{ fontSize: "0.9rem" }}
         onClick={handleNext}
       >

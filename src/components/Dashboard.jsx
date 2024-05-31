@@ -12,8 +12,8 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col justify-start items-center w-full h-full">
       <h1 className="text-center mb-10">Challenges</h1>
-      <ProgressBar progress={0} />
-      <div className="flex flex-col flex-grow w-full gap-5 mt-10">
+      <ProgressBar progress={5} />
+      <div className="flex flex-col flex-grow w-full gap-5 mt-10 justify-center items-center">
         <ChallengeCard title={"Challenge 1"} path={"/challenge1"} />
         <ChallengeCard title={"Challenge 2"} path={"/challenge2"} />
         <ChallengeCard title={"Challenge 3"} path={"/challenge3"} />
