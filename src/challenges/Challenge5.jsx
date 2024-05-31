@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import BackButton from "../components/BackButton";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import ClipBoard from "../assets/clipboard.svg";
+import IncorrectModal from "../components/IncorrectModal"
 
 export default function Challenge5() {
   const pythonCode = `
@@ -34,7 +35,20 @@ if __name__ == "__main__":
     }
   };
 
+  const[userFlag,setUserFlag]=useState("");
+  const [showModal, setShowModal] = useState(false);
+  const answer = " soscCTF{byte}";
+  function handleClick(){
+     if(userFlag.trim().toLowerCase()===answer.toLowerCase())
+      {
+        progress=progress+1;
+      }
+      else{
+        setShowModal(true);
+      }
+  }
   return (
+    <>
     <div className="flex flex-col w-full h-full justify-between">
       <BackButton />
       <div className="flex flex-col w-full p-4 justify-between items-center ">
@@ -83,16 +97,24 @@ if __name__ == "__main__":
           className="rounded-lg bg-slate-900 outline-none pl-3 mt-3 w-full py-1"
           placeholder="Answer"
           style={{ fontSize: "0.9rem" }}
-          // onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setUserFlag(e.target.value)}
+    
         />
         <button
           className="outline outline-white mt-5 px-2 rounded-lg text-center w-full btn bg-black text-white"
           style={{ fontSize: "0.9rem" }}
-          // onClick={handleNext}
+          onClick={handleClick}
         >
           Submit
         </button>
       </div>
     </div>
+    <IncorrectModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        title="Incorrect"
+        message="The flag you entered is incorrect. Please try again."
+      />
+    </>
   );
 }

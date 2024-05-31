@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import BackButton from "../components/BackButton";
 import SOSC from "../assets/SOSC.png";
 import { toPng } from "html-to-image";
+import IncorrectModal from "../components/IncorrectModal"
 
 export default function Challenge3() {
   const imageRef = useRef(null);
@@ -28,8 +29,21 @@ export default function Challenge3() {
       });
   }, [imageRef]);
 
+  const[userFlag,setUserFlag]=useState("");
+  const [showModal, setShowModal] = useState(false);
+  const answer = " soscCTF{byte}";
+  function handleClick(){
+     if(userFlag.trim().toLowerCase()===answer.toLowerCase())
+      {
+        progress=progress+1;
+      }
+      else{
+        setShowModal(true);
+      }
+  }
   return (
-    <div className="flex flex-col w-full h-full justify-between">
+    <>
+    <div className="flex flex-col w-full h-full justify-between ml-3">
       <BackButton />
       <div className="flex flex-col w-full p-4 justify-between items-center ">
         <h1 className="mb-10">Challenge 3</h1>
@@ -76,5 +90,12 @@ export default function Challenge3() {
         </button>
       </div>
     </div>
+    <IncorrectModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        title="Incorrect"
+        message="The flag you entered is incorrect. Please try again."
+      />
+    </>
   );
 }
