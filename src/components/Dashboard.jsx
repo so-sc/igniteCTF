@@ -7,10 +7,10 @@ export default function Dashboard() {
       <h1 className="ml-3 mb-10">Welcome!</h1>
       <div className="flex flex-col flex-grow w-full gap-5">
         <ChallengeCard title={"Challenge 1"} path={"/challenge1"} />
-        <ChallengeCard title={"Challenge 2"} />
-        <ChallengeCard title={"Challenge 3"} />
-        <ChallengeCard title={"Challenge 4"} />
-        <ChallengeCard title={"Challenge 5"} />
+        <ChallengeCard title={"Challenge 2"} path={"/challenge2"} />
+        <ChallengeCard title={"Challenge 3"} path={"/challenge3"} />
+        <ChallengeCard title={"Challenge 4"} path={"/challenge4"} />
+        <ChallengeCard title={"Challenge 5"} path={"/challenge5"} />
       </div>
     </div>
   );
