@@ -6,6 +6,10 @@ import { ChallengeContext } from "../components/ProgressContext";
 export default function Challenge4() {
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const user = localStorage.getItem("USER");
+  const [isComplete, setIsComplete] = useState(
+    JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c4
+  );
   const answer = "soscCTF{old_is_gold}";
 
   const { completeChallenge } = useContext(ChallengeContext);
@@ -44,15 +48,21 @@ export default function Challenge4() {
         <div className="flex flex-col w-full p-4 justify-center items-center ">
           <input
             id="answer"
-            className="rounded-lg bg-slate-900 outline-none pl-3 mt-3 w-full py-1"
-            placeholder="Answer"
+            className={`rounded-lg bg-slate-900 outline-none pl-3 mt-3 w-full py-1 ${
+              isComplete ? "placeholder:text-green-500" : ""
+            }`}
+            placeholder={isComplete ? answer : "Answer"}
             style={{ fontSize: "0.9rem" }}
             onChange={(e) => setUserFlag(e.target.value)}
+            disabled={isComplete}
           />
           <button
-            className="outline outline-white mt-5 px-2 rounded-lg text-center w-full btn bg-black text-white"
+            className={`outline ${
+              isComplete ? "outline-slate-700" : "outline-white"
+            } mt-5 px-2 rounded-lg text-center w-full btn bg-black text-white`}
             style={{ fontSize: "0.9rem" }}
             onClick={handleClick}
+            disabled={isComplete}
           >
             Submit
           </button>
