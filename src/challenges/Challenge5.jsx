@@ -4,6 +4,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import ClipBoard from "../assets/clipboard.svg";
 import IncorrectModal from "../components/IncorrectModal";
+// import HintModal from "../components/HintModal";
 import { ChallengeContext } from "../components/ProgressContext";
 
 export default function Challenge5() {
@@ -38,6 +39,7 @@ if __name__ == "__main__":
 
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
+  // const [showHint, setShowHint] = useState(false);
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c5
@@ -97,11 +99,14 @@ if __name__ == "__main__":
             {`Use the word as the flag in the format:`}
           </p>
           <p className="text-sm text-justify px-3 text-teal-500">{`XXXXXXX{XXXX}`}</p>
+          {/* <div className="mt-5 rounded-lg text-center bg-green-500 text-white" onClick={() => setShowHint(true)}>
+            <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
+          </div> */}
         </div>
-        <div className="flex flex-col w-full p-4 justify-center items-center ">
+        <div className="flex flex-col w-full justify-center items-center ">
           <input
             id="answer"
-            className={`rounded-lg bg-slate-900 outline-none pl-3 mt-3 w-full py-1 ${
+            className={`rounded-lg bg-slate-900 outline-none pl-3  w-full py-1 ${
               isComplete ? "placeholder:text-green-500" : ""
             }`}
             placeholder={isComplete ? answer : "Answer"}
@@ -127,6 +132,12 @@ if __name__ == "__main__":
         title="Incorrect"
         message="The flag you entered is incorrect. Please try again."
       />
+      {/* <HintModal
+        show={showHint}
+        onClose={() => setShowHint(false)}
+        title="Hint"
+        message=" Use the first alphabet of each word."
+      /> */}
     </>
   );
 }
