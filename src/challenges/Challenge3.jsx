@@ -31,7 +31,7 @@ export default function Challenge3() {
 
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const answer = " soscCTF{byte}";
+  const answer = "  soscCTF{our_tiny_little_secret} ";
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
       progress = progress + 1;
@@ -56,7 +56,7 @@ export default function Challenge3() {
             alt="Youtube"
           />
           <button
-            className="outline outline-white text-center w-full btn text-gray-200"
+            className="text-center btn text-black"
             onClick={handleDownload}
             disabled={isLoading}
           >
