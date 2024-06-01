@@ -17,7 +17,7 @@ def main():
         user_input = int(input("Enter the value of 5 factorial: "))
         if user_input == math.factorial(5):
             decoded_flag = base64.b64decode(
-                "c29zY0NURnt0aW1lX3RvX2NvZGV9").decode("utf-8")
+                "aWduaXRlQ1RGe3RpbWVfdG9fY29kZX0=").decode("utf-8")
             print(f"Congratulations! The flag is: {decoded_flag}")
         else:
             print("Incorrect value. Try again.")
@@ -44,7 +44,7 @@ if __name__ == "__main__":
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c5
   );
-  const answer = "soscCTF{time_to_code}";
+  const answer = "igniteCTF{time_to_code}";
 
   const { completeChallenge } = useContext(ChallengeContext);
 

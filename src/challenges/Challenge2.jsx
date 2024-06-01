@@ -7,7 +7,7 @@ import { ChallengeContext } from "../components/ProgressContext";
 
 export default function Challenge2() {
   const textToCopy =
-    "01110011 01101111 01110011 01100011 01000011 01010100 01000110 01111011 01101001 01011111 00111100 00110011 01011111 01010011 01001111 01010011 01000011 01111101 00001010";
+    "01101001 01100111 01101110 01101001 01110100 01100101 01000011 01010100 01000110 01111011 01101001 01011111 00111100 00110011 01011111 01010011 01001111 01010011 01000011 01111101";
 
   const copyToClipboard = async () => {
     try {
@@ -25,7 +25,7 @@ export default function Challenge2() {
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c2
   );
-  const answer = "soscCTF{i_<3_SOSC}";
+  const answer = "igniteCTF{i_<3_SOSC}";
 
   const { completeChallenge } = useContext(ChallengeContext);
 
@@ -71,7 +71,10 @@ export default function Challenge2() {
             {`Use the word as the flag in the format:`}
           </p>
           <p className="text-sm text-justify px-3 text-teal-500">{`XXXXXXX{XXXX}`}</p>
-          <div className="mt-5 rounded-lg text-center bg-green-500 text-white" onClick={() => setShowHint(true)}>
+          <div
+            className="mt-5 rounded-lg text-center bg-green-500 text-white"
+            onClick={() => setShowHint(true)}
+          >
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div>
         </div>
