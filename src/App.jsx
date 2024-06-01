@@ -9,20 +9,16 @@ import Challenge2 from "./challenges/Challenge2";
 import Challenge3 from "./challenges/Challenge3";
 import Challenge4 from "./challenges/Challenge4";
 import Challenge5 from "./challenges/Challenge5";
-import { ChallengeContext } from "./components/ProgressContext";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
-  const { setUsername, setUserData } = useContext(ChallengeContext);
 
   useEffect(() => {
     const user = localStorage.getItem("USER");
     // localStorage.removeItem("USER");
+    // localStorage.removeItem("Test_DATA");
     console.log(user);
     if (user) {
-      const data = localStorage.getItem(`${user}_DATA`);
-      setUserData(JSON.parse(data));
-      setUsername(user);
       setIsLogin(true);
     }
   }, []);

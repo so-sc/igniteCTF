@@ -3,12 +3,15 @@ import React, { createContext, useEffect, useState } from "react";
 export const ChallengeContext = createContext();
 
 export const ChallengeProvider = ({ children }) => {
-  const [userData, setUserData] = useState(null);
+  const [username, setUsername] = useState(localStorage.getItem(`USER`));
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem(`${username}_DATA`))
+  );
   const [challengeData, setChallengeData] = useState(null);
-  const [username, setUsername] = useState(null);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    console.log(userData);
     if (!userData) return;
     setChallengeData(userData.c);
   }, [userData]);
@@ -17,6 +20,10 @@ export const ChallengeProvider = ({ children }) => {
     if (!challengeData) return;
     updateProgress(challengeData);
     console.log(challengeData);
+    let obj = userData;
+    obj["c"] = challengeData;
+    localStorage.setItem(`${username}_DATA`, JSON.stringify(obj));
+    // console.log(challengeData);
   }, [challengeData]);
 
   function updateProgress(obj) {
@@ -45,7 +52,7 @@ export const ChallengeProvider = ({ children }) => {
         setUsername,
         challengeData,
         setChallengeData,
-        completeChallenge
+        completeChallenge,
       }}
     >
       {children}
