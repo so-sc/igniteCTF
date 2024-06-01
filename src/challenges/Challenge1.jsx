@@ -32,7 +32,7 @@ export default function Challenge1() {
     }
   }
   useEffect(() => {
-    console.log(isComplete);
+    // console.log(isComplete);
   }, [isComplete]);
 
   return (

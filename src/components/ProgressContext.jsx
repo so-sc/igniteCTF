@@ -13,16 +13,17 @@ export const ChallengeProvider = ({ children }) => {
   const [hintNumber, setHintNumber] = useState(0);
 
   useEffect(() => {
-    console.log(userData);
+    // console.log(userData);
     if (!userData) return;
     setChallengeData(userData.c);
-    setHintsUsed(userData.d.hintsUsed);
+    if (userData && userData.d && userData.d.hintsUsed)
+      setHintsUsed(userData.d.hintsUsed);
   }, [userData]);
 
   useEffect(() => {
     if (!challengeData) return;
     updateProgress(challengeData);
-    console.log(challengeData);
+    // console.log(challengeData);
     let obj = userData;
     obj["c"] = challengeData;
     localStorage.setItem(`${username}_DATA`, JSON.stringify(obj));
@@ -45,7 +46,7 @@ export const ChallengeProvider = ({ children }) => {
     );
     setProgress(progressCount);
     if (progressCount === 5) logFinishTime();
-    console.log(progressCount);
+    // console.log(progressCount);
   }
 
   function updateHints(obj) {
@@ -54,7 +55,7 @@ export const ChallengeProvider = ({ children }) => {
       0
     );
     setHintNumber(progressCount);
-    console.log(progressCount);
+    // console.log(progressCount);
   }
 
   const completeChallenge = (key) => {

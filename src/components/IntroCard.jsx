@@ -17,9 +17,15 @@ export default function IntroCard({ login }) {
         hintsUsed: { c1: false, c2: false, c3: false, c4: false, c5: false },
       },
     };
-    localStorage.setItem(`${usernameDisp}_DATA`, JSON.stringify(obj));
+
     setUsername(usernameDisp);
-    setUserData(obj);
+    const data = localStorage.getItem(`${usernameDisp}_DATA`);
+    if (!data) {
+      localStorage.setItem(`${usernameDisp}_DATA`, JSON.stringify(obj));
+      setUserData(obj);
+    } else {
+      setUserData(data);
+    }
     login();
   }
 

@@ -17,7 +17,7 @@ export default function App() {
     const user = localStorage.getItem("USER");
     // localStorage.removeItem("USER");
     // localStorage.removeItem("Test_DATA");
-    console.log(user);
+    // console.log(user);
     if (user) {
       setIsLogin(true);
     }

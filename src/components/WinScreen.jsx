@@ -10,7 +10,7 @@ export default function WinScreen() {
     const start = new Date(data.d.startTime);
     const end = new Date(data.d.endTime);
     formatTimeDifference(start, end);
-    console.log(start, end);
+    // console.log(start, end);
   }, []);
 
   const { hintNumber } = useContext(ChallengeContext);
