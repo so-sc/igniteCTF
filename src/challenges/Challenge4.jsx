@@ -5,7 +5,7 @@ import IncorrectModal from "../components/IncorrectModal";
 export default function Challenge4() {
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const answer = " soscCTF{byte}";
+  const answer = "  soscCTF{old_is_gold}";
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
       progress = progress + 1;

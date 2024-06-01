@@ -8,7 +8,7 @@ export default function ChallengeCard({ title, path, complete }) {
     <div
       className={`w-11/12 ${
         complete ? "bg-slate-500" : "bg-slate-900"
-      } h-16 flex items-center justify-center cursor-pointer btn`}
+      } h-16 flex items-center justify-center cursor-pointer btn text-white`}
       onClick={() => navigate(path)}
     >
       <h1 className="text-sm text-center">{title}</h1>

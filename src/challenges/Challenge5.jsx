@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const answer = " soscCTF{byte}";
+  const answer = " soscCTF{time_to_code}";
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
       progress = progress + 1;
