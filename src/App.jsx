@@ -3,21 +3,28 @@ import PageLayout from "./components/PageLayout";
 import Dashboard from "./components/Dashboard";
 import IntroCard from "./components/IntroCard";
 import Challenge1 from "./challenges/Challenge1";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Challenge2 from "./challenges/Challenge2";
 import Challenge3 from "./challenges/Challenge3";
 import Challenge4 from "./challenges/Challenge4";
 import Challenge5 from "./challenges/Challenge5";
+import { ChallengeContext } from "./components/ProgressContext";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
+  const { setUsername, setUserData } = useContext(ChallengeContext);
 
   useEffect(() => {
     const user = localStorage.getItem("USER");
     // localStorage.removeItem("USER");
     console.log(user);
-    if (user) setIsLogin(true);
+    if (user) {
+      const data = localStorage.getItem(`${user}_DATA`);
+      setUserData(JSON.parse(data));
+      setUsername(user);
+      setIsLogin(true);
+    }
   }, []);
 
   return (

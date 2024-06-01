@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BackButton from "../components/BackButton";
 import Bluetooth from "../assets/bluetooth.png";
 import Youtube from "../assets/youtube.png";
 import Terminal from "../assets/terminal.png";
 import Edge from "../assets/edge.png";
 import IncorrectModal from "../components/IncorrectModal";
+import { ChallengeContext } from "../components/ProgressContext";
 
 export default function Challenge1() {
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const answer = " soscCTF{byte}";
+  const answer = "soscCTF{byte}";
+
+  const { completeChallenge } = useContext(ChallengeContext);
+
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
-      progress = progress + 1;
+      // progress = progress + 1;
+      completeChallenge(1); //challenge number
     } else {
       setShowModal(true);
     }
