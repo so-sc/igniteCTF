@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BackButton from "../components/BackButton";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import ClipBoard from "../assets/clipboard.svg";
 import IncorrectModal from "../components/IncorrectModal";
+import { ChallengeContext } from "../components/ProgressContext";
 
 export default function Challenge5() {
   const pythonCode = `
@@ -37,10 +38,14 @@ if __name__ == "__main__":
 
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const answer = " soscCTF{time_to_code}";
+  const answer = "soscCTF{time_to_code}";
+
+  const { completeChallenge } = useContext(ChallengeContext);
+
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
-      progress = progress + 1;
+      // progress = progress + 1;
+      completeChallenge(5); //challenge number
     } else {
       setShowModal(true);
     }

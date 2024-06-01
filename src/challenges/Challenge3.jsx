@@ -1,8 +1,9 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import BackButton from "../components/BackButton";
 import SOSC from "../assets/SOSC.png";
 import { toPng } from "html-to-image";
 import IncorrectModal from "../components/IncorrectModal";
+import { ChallengeContext } from "../components/ProgressContext";
 
 export default function Challenge3() {
   const imageRef = useRef(null);
@@ -31,10 +32,14 @@ export default function Challenge3() {
 
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const answer = "  soscCTF{our_tiny_little_secret} ";
+  const answer = "soscCTF{our_tiny_little_secret}";
+
+  const { completeChallenge } = useContext(ChallengeContext);
+
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
-      progress = progress + 1;
+      // progress = progress + 1;
+      completeChallenge(3); //challenge number
     } else {
       setShowModal(true);
     }

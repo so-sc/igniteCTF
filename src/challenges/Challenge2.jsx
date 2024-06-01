@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BackButton from "../components/BackButton";
 import ClipBoard from "../assets/clipboard.svg";
 import IncorrectModal from "../components/IncorrectModal";
+import { ChallengeContext } from "../components/ProgressContext";
 
 export default function Challenge2() {
   const textToCopy =
@@ -18,11 +19,14 @@ export default function Challenge2() {
 
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const answer = " soscCTF{byte}";
+  const answer = "soscCTF{i_<3_SOSC}";
+
+  const { completeChallenge } = useContext(ChallengeContext);
 
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
-      progress = progress + 1;
+      // progress = progress + 1;
+      completeChallenge(2); //challenge number
     } else {
       setShowModal(true);
     }

@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BackButton from "../components/BackButton";
 import IncorrectModal from "../components/IncorrectModal";
+import { ChallengeContext } from "../components/ProgressContext";
 
 export default function Challenge4() {
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const answer = "  soscCTF{old_is_gold}";
+  const answer = "soscCTF{old_is_gold}";
+
+  const { completeChallenge } = useContext(ChallengeContext);
+
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
-      progress = progress + 1;
+      // progress = progress + 1;
+      completeChallenge(4); //challenge number
     } else {
       setShowModal(true);
     }
