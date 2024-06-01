@@ -9,11 +9,14 @@ export const ChallengeProvider = ({ children }) => {
   );
   const [challengeData, setChallengeData] = useState(null);
   const [progress, setProgress] = useState(0);
+  const [hintsUsed, setHintsUsed] = useState(null);
+  const [hintNumber, setHintNumber] = useState(0);
 
   useEffect(() => {
     console.log(userData);
     if (!userData) return;
     setChallengeData(userData.c);
+    setHintsUsed(userData.d.hintsUsed);
   }, [userData]);
 
   useEffect(() => {
@@ -26,12 +29,31 @@ export const ChallengeProvider = ({ children }) => {
     // console.log(challengeData);
   }, [challengeData]);
 
+  useEffect(() => {
+    if (!hintsUsed) return;
+    updateHints(hintsUsed);
+    let obj = userData;
+    obj["d"]["hintsUsed"] = hintsUsed;
+    localStorage.setItem(`${username}_DATA`, JSON.stringify(obj));
+    // console.log(challengeData);
+  }, [hintsUsed]);
+
   function updateProgress(obj) {
     const progressCount = Object.values(obj).reduce(
       (acc, value) => acc + (value === true ? 1 : 0),
       0
     );
     setProgress(progressCount);
+    if (progressCount === 5) logFinishTime();
+    console.log(progressCount);
+  }
+
+  function updateHints(obj) {
+    const progressCount = Object.values(obj).reduce(
+      (acc, value) => acc + (value === true ? 1 : 0),
+      0
+    );
+    setHintNumber(progressCount);
     console.log(progressCount);
   }
 
@@ -41,6 +63,21 @@ export const ChallengeProvider = ({ children }) => {
       [`c${key}`]: true,
     }));
   };
+
+  const useHint = (key) => {
+    if (!key) return;
+    setHintsUsed((prevState) => ({
+      ...prevState,
+      [`c${key}`]: true,
+    }));
+  };
+
+  function logFinishTime() {
+    const end = new Date();
+    const obj = userData;
+    if (obj["d"]["endTime"]) return;
+    obj["d"]["endTime"] = end;
+  }
 
   return (
     <ChallengeContext.Provider
@@ -53,6 +90,8 @@ export const ChallengeProvider = ({ children }) => {
         challengeData,
         setChallengeData,
         completeChallenge,
+        useHint,
+        hintNumber,
       }}
     >
       {children}

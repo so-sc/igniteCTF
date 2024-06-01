@@ -140,6 +140,7 @@ if __name__ == "__main__":
         onClose={() => setShowHint(false)}
         title="Hint"
         message=" Use the first alphabet of each word."
+        id={5}
       /> */}
       <SuccessModal show={showSuccess} />
     </>

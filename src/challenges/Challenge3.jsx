@@ -119,6 +119,7 @@ export default function Challenge3() {
         title="Hint"
         message=" All images have hidden information called metadata, try finding a metadata viewer.
         "
+        id={3}
       />
       <SuccessModal show={showSuccess} />
     </>

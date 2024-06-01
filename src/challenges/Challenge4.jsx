@@ -87,6 +87,7 @@ export default function Challenge4() {
         onClose={() => setShowHint(false)}
         title="Hint"
         message=" Try finding ROT13 decryptors online and use shift 13"
+        id={4}
       />
       <SuccessModal show={showSuccess} />
 

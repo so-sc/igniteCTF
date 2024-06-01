@@ -1,17 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { ChallengeContext } from "./ProgressContext";
 
-export default function HintModal({ show, onClose, title, message }) {
+export default function HintModal({ show, onClose, title, message, id }) {
+  const { useHint } = useContext(ChallengeContext);
+
   useEffect(() => {
     if (show) {
       window.scrollTo(0, 0);
       document.body.style.overflow = "hidden";
+      if (id) useHint(id);
     } else {
       document.body.style.overflow = "auto";
     }
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [show]);
+  }, [show, id]);
   if (!show) return null;
 
   return (

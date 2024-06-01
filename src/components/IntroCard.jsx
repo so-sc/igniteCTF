@@ -11,7 +11,11 @@ export default function IntroCard({ login }) {
     const now = new Date();
     const obj = {
       c: { c1: false, c2: false, c3: false, c4: false, c5: false },
-      d: { startTime: now, endTime: null },
+      d: {
+        startTime: now,
+        endTime: null,
+        hintsUsed: { c1: false, c2: false, c3: false, c4: false, c5: false },
+      },
     };
     localStorage.setItem(`${usernameDisp}_DATA`, JSON.stringify(obj));
     setUsername(usernameDisp);
