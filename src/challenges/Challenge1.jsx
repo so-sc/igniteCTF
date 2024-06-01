@@ -29,21 +29,8 @@ export default function Challenge1() {
     }
   }
   useEffect(() => {
-    if (!isComplete) {
-      const interval = setInterval(() => {
-        setTimer(prev => prev + 1);
-      }, 60000); // Increment timer every minute
-
-      return () => clearInterval(interval); // Cleanup interval on component unmount
-    }
+    console.log(isComplete);
   }, [isComplete]);
-
-  useEffect(() => {
-    if (timer > 0 && timer % 30 === 0 && hintIndex < hints.length) {
-      setHintIndex(prev => prev + 1);
-      setShowHint(true);
-    }
-  }, [timer, hintIndex, hints.length]);
 
   return (
     <>

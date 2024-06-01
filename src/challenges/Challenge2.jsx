@@ -98,6 +98,7 @@ export default function Challenge2() {
             Submit
           </button>
         </div>
+        
       </div>
 
       <IncorrectModal
