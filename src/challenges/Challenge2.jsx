@@ -20,7 +20,7 @@ export default function Challenge2() {
 
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [showHint, setShowHint] = useState(false);
+  const [showHint, setShowHint] = useState(false); 
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c2
@@ -110,7 +110,7 @@ export default function Challenge2() {
         show={showHint}
         onClose={() => setShowHint(false)}
         title="Hint"
-        message=" This is the binary representation of some text"
+        message="  This is the binary representation of some text."
       />
     </>
   );
