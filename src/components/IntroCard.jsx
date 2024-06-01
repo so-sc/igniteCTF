@@ -5,6 +5,11 @@ export default function IntroCard({ login }) {
 
   function handleNext() {
     localStorage.setItem("USER", username);
+    const obj = {
+      c: { c1: false, c2: false, c3: false, c4: false, c5: false },
+      d: { startTime: null, endTime: null },
+    };
+    localStorage.setItem(`${username}_DATA`, JSON.stringify(obj));
     login();
   }
 

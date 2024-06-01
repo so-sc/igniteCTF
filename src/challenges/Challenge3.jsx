@@ -77,12 +77,12 @@ export default function Challenge3() {
             className="rounded-lg bg-slate-900 outline-none pl-3 mt-3 w-full py-1"
             placeholder="Answer"
             style={{ fontSize: "0.9rem" }}
-            // onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUserFlag(e.target.value)}
           />
           <button
             className="outline outline-white mt-5 rounded-lg text-center w-full btn bg-black text-white"
             style={{ fontSize: "0.9rem" }}
-            // onClick={handleNext}
+            onClick={handleClick}
           >
             Submit
           </button>
