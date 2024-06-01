@@ -13,7 +13,7 @@ export default function Challenge3() {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href =
-      "https://drive.google.com/uc?export=download&id=1UELRBROgNGnUMEESIxYQwfVcBc4oaihx";
+      "https://drive.google.com/uc?export=download&id=1K4p30uobgZzjCOV7Hx7qe50Yn27Ymgxj";
     link.download = "image.png";
     document.body.appendChild(link);
     link.click();
@@ -31,7 +31,7 @@ export default function Challenge3() {
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c3
   );
-  const answer = "soscCTF{our_tiny_little_secret}";
+  const answer = "igniteCTF{our_tiny_little_secret}";
 
   const { completeChallenge } = useContext(ChallengeContext);
 
@@ -74,7 +74,10 @@ export default function Challenge3() {
             {`Use the word as the flag in the format:`}
           </p>
           <p className="text-sm text-justify px-3 text-teal-500">{`XXXXXXX{XXXX}`}</p>
-          <div className="mt-5 rounded-lg text-center bg-green-500 text-white" onClick={() => setShowHint(true)}>
+          <div
+            className="mt-5 rounded-lg text-center bg-green-500 text-white"
+            onClick={() => setShowHint(true)}
+          >
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div>
         </div>

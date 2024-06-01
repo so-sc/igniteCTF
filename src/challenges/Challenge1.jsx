@@ -16,7 +16,7 @@ export default function Challenge1() {
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c1
   );
-  const answer = "soscCTF{byte}";
+  const answer = "igniteCTF{byte}";
 
   const { completeChallenge } = useContext(ChallengeContext);
 
@@ -68,7 +68,7 @@ export default function Challenge1() {
           <p className="text-sm text-justify px-3 mt-5">
             {`Use the word as the flag in the format:`}
           </p>
-          <p className="text-sm text-justify px-3 text-teal-500">{`soscCTF{XXXX}`}</p>
+          <p className="text-sm text-justify px-3 text-teal-500">{`igniteCTF{XXXX}`}</p>
           <div className="mt-5 rounded-lg text-center bg-green-500 text-white"  onClick={() => setShowHint(true)}>
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div>

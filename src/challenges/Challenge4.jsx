@@ -12,7 +12,7 @@ export default function Challenge4() {
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c4
   );
-  const answer = "soscCTF{old_is_gold}";
+  const answer = "igniteCTF{old_is_gold}";
 
   const { completeChallenge } = useContext(ChallengeContext);
 
