@@ -104,6 +104,7 @@ export default function Challenge2() {
             Submit
           </button>
         </div>
+        
       </div>
 
       <IncorrectModal
@@ -116,7 +117,7 @@ export default function Challenge2() {
         show={showHint}
         onClose={() => setShowHint(false)}
         title="Hint"
-        message=" This is the binary representation of some text"
+        message="  This is the binary representation of some text."
       />
       <SuccessModal show={showSuccess} />
 
