@@ -5,6 +5,7 @@ import { toPng } from "html-to-image";
 import IncorrectModal from "../components/IncorrectModal";
 import HintModal from "../components/HintModal";
 import { ChallengeContext } from "../components/ProgressContext";
+import SuccessModal from "../components/SuccessModal";
 
 export default function Challenge3() {
   const imageRef = useRef(null);
@@ -27,6 +28,7 @@ export default function Challenge3() {
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c3
@@ -39,13 +41,14 @@ export default function Challenge3() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
       // progress = progress + 1;
       completeChallenge(3); //challenge number
+      setShowSuccess(true);
     } else {
       setShowModal(true);
     }
   }
   return (
     <>
-      <div className="flex flex-col w-full h-full justify-between ml-3">
+      <div className="flex flex-col w-full h-full justify-between">
         <BackButton />
         <div className="flex flex-col w-full p-4 justify-between items-center ">
           <h1 className="mb-10">Challenge 3</h1>
@@ -55,7 +58,7 @@ export default function Challenge3() {
           </p>
           <img
             ref={imageRef}
-            className="max-w-full h-auto py-5"
+            className="w-full h-auto py-5"
             src={SOSC}
             alt="Youtube"
           />
@@ -81,7 +84,7 @@ export default function Challenge3() {
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div>
         </div>
-        <div className="flex flex-col w-full  justify-center items-center ">
+        <div className="flex flex-col w-full px-5 justify-center items-center px-5">
           <input
             id="answer"
             className={`rounded-lg bg-slate-900 outline-none pl-3 w-full py-1 ${
@@ -117,6 +120,7 @@ export default function Challenge3() {
         message=" All images have hidden information called metadata, try finding a metadata viewer.
         "
       />
+      <SuccessModal show={showSuccess} />
     </>
   );
 }

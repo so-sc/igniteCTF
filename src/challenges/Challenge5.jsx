@@ -6,6 +6,7 @@ import ClipBoard from "../assets/clipboard.svg";
 import IncorrectModal from "../components/IncorrectModal";
 // import HintModal from "../components/HintModal";
 import { ChallengeContext } from "../components/ProgressContext";
+import SuccessModal from "../components/SuccessModal";
 
 export default function Challenge5() {
   const pythonCode = `
@@ -39,6 +40,7 @@ if __name__ == "__main__":
 
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   // const [showHint, setShowHint] = useState(false);
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
@@ -52,6 +54,7 @@ if __name__ == "__main__":
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
       // progress = progress + 1;
       completeChallenge(5); //challenge number
+      setShowSuccess(true);
     } else {
       setShowModal(true);
     }
@@ -103,7 +106,7 @@ if __name__ == "__main__":
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div> */}
         </div>
-        <div className="flex flex-col w-full justify-center items-center ">
+        <div className="flex flex-col w-full justify-center items-center px-5">
           <input
             id="answer"
             className={`rounded-lg bg-slate-900 outline-none pl-3  w-full py-1 ${
@@ -138,6 +141,7 @@ if __name__ == "__main__":
         title="Hint"
         message=" Use the first alphabet of each word."
       /> */}
+      <SuccessModal show={showSuccess} />
     </>
   );
 }

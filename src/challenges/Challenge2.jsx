@@ -4,6 +4,7 @@ import ClipBoard from "../assets/clipboard.svg";
 import IncorrectModal from "../components/IncorrectModal";
 import HintModal from "../components/HintModal";
 import { ChallengeContext } from "../components/ProgressContext";
+import SuccessModal from "../components/SuccessModal";
 
 export default function Challenge2() {
   const textToCopy =
@@ -21,6 +22,7 @@ export default function Challenge2() {
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c2
@@ -33,6 +35,7 @@ export default function Challenge2() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
       // progress = progress + 1;
       completeChallenge(2); //challenge number
+      setShowSuccess(true);
     } else {
       setShowModal(true);
     }
@@ -79,7 +82,7 @@ export default function Challenge2() {
           </div>
         </div>
 
-        <div className="flex flex-col w-full justify-center items-center ">
+        <div className="flex flex-col w-full justify-center items-center px-5">
           <input
             id="answer"
             className={`rounded-lg bg-slate-900 outline-none pl-3  w-full py-1 ${
@@ -115,6 +118,8 @@ export default function Challenge2() {
         title="Hint"
         message=" This is the binary representation of some text"
       />
+      <SuccessModal show={showSuccess} />
+
     </>
   );
 }

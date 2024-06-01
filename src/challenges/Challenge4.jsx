@@ -3,10 +3,12 @@ import BackButton from "../components/BackButton";
 import IncorrectModal from "../components/IncorrectModal";
 import HintModal from "../components/HintModal";
 import { ChallengeContext } from "../components/ProgressContext";
+import SuccessModal from "../components/SuccessModal";
 
 export default function Challenge4() {
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
@@ -20,6 +22,7 @@ export default function Challenge4() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
       // progress = progress + 1;
       completeChallenge(4); //challenge number
+      setShowSuccess(true);
     } else {
       setShowModal(true);
     }
@@ -50,7 +53,7 @@ export default function Challenge4() {
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div>
         </div>
-        <div className="flex flex-col w-full justify-center items-center ">
+        <div className="flex flex-col w-full justify-center items-center px-5">
           <input
             id="answer"
             className={`rounded-lg bg-slate-900 outline-none pl-3  w-full py-1 ${
@@ -85,6 +88,8 @@ export default function Challenge4() {
         title="Hint"
         message=" Try finding ROT13 decryptors online and use shift 13"
       />
+      <SuccessModal show={showSuccess} />
+
     </>
   );
 }

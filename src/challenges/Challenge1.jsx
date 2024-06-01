@@ -7,11 +7,13 @@ import Edge from "../assets/edge.png";
 import IncorrectModal from "../components/IncorrectModal";
 import HintModal from "../components/HintModal";
 import { ChallengeContext } from "../components/ProgressContext";
+import SuccessModal from "../components/SuccessModal";
 
 export default function Challenge1() {
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [showHint, setShowHint] = useState(false); 
+  const [showHint, setShowHint] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c1
@@ -24,6 +26,7 @@ export default function Challenge1() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
       // progress = progress + 1;
       completeChallenge(1); //challenge number
+      setShowSuccess(true);
     } else {
       setShowModal(true);
     }
@@ -69,11 +72,14 @@ export default function Challenge1() {
             {`Use the word as the flag in the format:`}
           </p>
           <p className="text-sm text-justify px-3 text-teal-500">{`igniteCTF{XXXX}`}</p>
-          <div className="mt-5 rounded-lg text-center bg-green-500 text-white"  onClick={() => setShowHint(true)}>
+          <div
+            className="mt-5 rounded-lg text-center bg-green-500 text-white"
+            onClick={() => setShowHint(true)}
+          >
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div>
         </div>
-        <div className="flex flex-col w-full justify-center items-center ">
+        <div className="flex flex-col w-full justify-center items-center px-5">
           <input
             id="answer"
             className={`rounded-lg bg-slate-900 outline-none pl-3  w-full py-1 ${
@@ -108,6 +114,7 @@ export default function Challenge1() {
         title="Hint"
         message=" Use the first alphabet of each word."
       />
+      <SuccessModal show={showSuccess} />
     </>
   );
 }

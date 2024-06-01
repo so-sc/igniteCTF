@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function HintModal({ show, onClose, title, message }) {
+  useEffect(() => {
+    if (show) {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [show]);
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-      <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+    <div className="absolute bg-gray-600 bg-opacity-50 h-full w-full flex justify-center items-center top-0 overflow-hidden">
+      <div className="m-5 py-6 border shadow-lg rounded-md bg-white w-11/12 max-w-md text-center">
         <div className="mt-3 text-center">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">{title}</h3>
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
+            {title}
+          </h3>
           <div className="mt-2 px-7 py-3">
             <p className="text-sm text-gray-500">{message}</p>
           </div>
