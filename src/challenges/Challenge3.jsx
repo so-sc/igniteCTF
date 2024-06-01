@@ -9,26 +9,19 @@ export default function Challenge3() {
   const imageRef = useRef(null);
   const [isLoading, setisLoading] = useState(false);
 
-  const handleDownload = useCallback(() => {
-    if (imageRef.current === null) {
-      return;
-    }
-
-    toPng(imageRef.current, { cacheBust: true })
-      .then((dataUrl) => {
-        const link = document.createElement("a");
-        link.download = "image.png";
-        link.href = dataUrl;
-        link.click();
-        setisLoading(true);
-        setTimeout(() => {
-          setisLoading(false);
-        }, 3000);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [imageRef]);
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href =
+      "https://drive.google.com/uc?export=download&id=1UELRBROgNGnUMEESIxYQwfVcBc4oaihx";
+    link.download = "image.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setisLoading(true);
+    setTimeout(() => {
+      setisLoading(false);
+    }, 3000);
+  };
 
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
