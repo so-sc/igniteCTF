@@ -130,7 +130,7 @@ export default function Challenge3() {
         onClose={() => setShowHint(false)}
         title="Hint"
         message="ll images have hidden information called metadata, try finding a metadata viewer. "
-        id={4}
+        id={3}
       />
       <SuccessModal show={showSuccess} />
       <ConfirmationModal

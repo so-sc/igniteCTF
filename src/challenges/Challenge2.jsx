@@ -127,7 +127,7 @@ export default function Challenge2() {
         onClose={() => setShowHint(false)}
         title="Hint"
         message=" This is the binary representation of some text"
-        id={4}
+        id={2}
       />
       <SuccessModal show={showSuccess} />
       <ConfirmationModal

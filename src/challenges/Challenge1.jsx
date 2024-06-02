@@ -124,7 +124,7 @@ export default function Challenge1() {
         onClose={() => setShowHint(false)}
         title="Hint"
         message=" Use the first alphabet of each word."
-        id={4}
+        id={1}
       />
       <SuccessModal show={showSuccess} />
       <ConfirmationModal
