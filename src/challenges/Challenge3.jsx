@@ -6,6 +6,7 @@ import IncorrectModal from "../components/IncorrectModal";
 import HintModal from "../components/HintModal";
 import { ChallengeContext } from "../components/ProgressContext";
 import SuccessModal from "../components/SuccessModal";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 export default function Challenge3() {
   const imageRef = useRef(null);
@@ -29,6 +30,7 @@ export default function Challenge3() {
   const [showModal, setShowModal] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false); 
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c3
@@ -46,6 +48,16 @@ export default function Challenge3() {
       setShowModal(true);
     }
   }
+  const handleHintClick = () => {
+    setShowConfirmation(true); // Show confirmation modal when hint button is clicked
+  };
+
+  const handleConfirmHint = () => {
+    // Logic to show the hint and deduct points
+    setShowConfirmation(false);
+    setShowHint(true);
+    console.log("Hint viewed, points deducted.");
+  };
   return (
     <>
       <div className="flex flex-col w-full h-full justify-between">
@@ -79,7 +91,7 @@ export default function Challenge3() {
           <p className="text-sm text-justify px-3 text-teal-500">{`igniteCTF{XXXX}`}</p>
           <div
             className="mt-5 rounded-lg text-center bg-green-500 text-white"
-            onClick={() => setShowHint(true)}
+            onClick={handleHintClick}
           >
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div>
@@ -113,15 +125,21 @@ export default function Challenge3() {
         title="Incorrect"
         message="The flag you entered is incorrect. Please try again."
       />
-      <HintModal
+       <HintModal
         show={showHint}
         onClose={() => setShowHint(false)}
         title="Hint"
-        message=" All images have hidden information called metadata, try finding a metadata viewer.
-        "
-        id={3}
+        message="ll images have hidden information called metadata, try finding a metadata viewer. "
+        id={4}
       />
       <SuccessModal show={showSuccess} />
+      <ConfirmationModal
+        show={showConfirmation}
+        onClose={() => setShowConfirmation(false)}
+        onConfirm={handleConfirmHint}
+        title="Are you sure?"
+        message="Viewing the hint will affect your points. Do you want to proceed?"
+      />
     </>
   );
 }

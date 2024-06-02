@@ -72,8 +72,7 @@ if __name__ == "__main__":
           </p>
           <div
             className="w-full h-10 mt-4 rounded-tr-xl rounded-tl-xl flex items-center justify-end"
-            style={{ backgroundColor: "rgb(68, 68, 68)" }}
-          >
+            style={{ backgroundColor: "rgb(68, 68, 68)" }}>
             <div
               className="mr-3 btn btn-link"
               style={{

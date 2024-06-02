@@ -4,12 +4,14 @@ import IncorrectModal from "../components/IncorrectModal";
 import HintModal from "../components/HintModal";
 import { ChallengeContext } from "../components/ProgressContext";
 import SuccessModal from "../components/SuccessModal";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 export default function Challenge4() {
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false); 
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c4
@@ -27,6 +29,16 @@ export default function Challenge4() {
       setShowModal(true);
     }
   }
+  const handleHintClick = () => {
+    setShowConfirmation(true); // Show confirmation modal when hint button is clicked
+  };
+
+  const handleConfirmHint = () => {
+    // Logic to show the hint and deduct points
+    setShowConfirmation(false);
+    setShowHint(true);
+    console.log("Hint viewed, points deducted.");
+  };
 
   return (
     <>
@@ -49,7 +61,7 @@ export default function Challenge4() {
             {`Use the word as the flag in the format:`}
           </p>
           <p className="text-sm text-justify px-3 text-teal-500">{`igniteCTF{XXXX}`}</p>
-          <div className="mt-5 rounded-lg text-center bg-green-500 text-white" onClick={() => setShowHint(true)}>
+          <div className="mt-5 rounded-lg text-center bg-green-500 text-white" onClick={handleHintClick}>
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div>
         </div>
@@ -82,14 +94,21 @@ export default function Challenge4() {
         title="Incorrect"
         message="The flag you entered is incorrect. Please try again."
       />
-      <HintModal
+         <HintModal
         show={showHint}
         onClose={() => setShowHint(false)}
         title="Hint"
-        message=" Try finding ROT13 decryptors online and use shift 13"
+        message="Try finding ROT13 decryptors online and use shift 13"
         id={4}
       />
       <SuccessModal show={showSuccess} />
+      <ConfirmationModal
+        show={showConfirmation}
+        onClose={() => setShowConfirmation(false)}
+        onConfirm={handleConfirmHint}
+        title="Are you sure?"
+        message="Viewing the hint will affect your points. Do you want to proceed?"
+      />
 
     </>
   );
