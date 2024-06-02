@@ -37,10 +37,6 @@ export default function PageLayout({ children }) {
         show={showRules}
         onClose={() => setShowRules(false)}
         title="Rules"
-        message="CTF will be judged on points basis. Each challenge will have a certain
-        amount of points. All the questions will be visible to the participant and they can jump to any
-        question they wish.The hints will be made available after a certain amount of time, say after 30
-        mins. The first challenge is just introductory and it need not be graded."
       />
     </>
   );
