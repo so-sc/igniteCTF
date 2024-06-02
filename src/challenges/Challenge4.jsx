@@ -30,11 +30,10 @@ export default function Challenge4() {
     }
   }
   const handleHintClick = () => {
-    setShowConfirmation(true); // Show confirmation modal when hint button is clicked
+    setShowConfirmation(true); 
   };
 
   const handleConfirmHint = () => {
-    // Logic to show the hint and deduct points
     setShowConfirmation(false);
     setShowHint(true);
     console.log("Hint viewed, points deducted.");

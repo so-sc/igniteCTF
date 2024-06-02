@@ -4,9 +4,10 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import ClipBoard from "../assets/clipboard.svg";
 import IncorrectModal from "../components/IncorrectModal";
-// import HintModal from "../components/HintModal";
+import HintModal from "../components/HintModal";
 import { ChallengeContext } from "../components/ProgressContext";
 import SuccessModal from "../components/SuccessModal";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 export default function Challenge5() {
   const pythonCode = `
@@ -41,7 +42,8 @@ if __name__ == "__main__":
   const [userFlag, setUserFlag] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  // const [showHint, setShowHint] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c5
@@ -59,6 +61,15 @@ if __name__ == "__main__":
       setShowModal(true);
     }
   }
+  const handleHintClick = () => {
+    setShowConfirmation(true); 
+  };
+
+  const handleConfirmHint = () => {
+    setShowConfirmation(false);
+    setShowHint(true);
+    console.log("Hint viewed, points deducted.");
+  };
   return (
     <>
       <div className="flex flex-col w-full h-full justify-between">
@@ -67,8 +78,7 @@ if __name__ == "__main__":
           <h1 className="mb-10">Challenge 5</h1>
           <p className="text-base text-justify mb-5">
             If you want to befriend the computer you must know how to talk to
-            it, that's what coding is all about, execute this code using an
-            online python compiler and the flag shall be yours.
+            it, that's what coding is all about.
           </p>
           <div
             className="w-full h-10 mt-4 rounded-tr-xl rounded-tl-xl flex items-center justify-end"
@@ -101,9 +111,9 @@ if __name__ == "__main__":
             {`Use the word as the flag in the format:`}
           </p>
           <p className="text-sm text-justify px-3 text-teal-500">{`igniteCTF{XXXX}`}</p>
-          {/* <div className="mt-5 rounded-lg text-center bg-green-500 text-white" onClick={() => setShowHint(true)}>
+          <div className="mt-5 rounded-lg text-center bg-green-500 text-white" onClick={handleHintClick}>
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
-          </div> */}
+          </div>
         </div>
         <div className="flex flex-col w-full justify-center items-center px-5">
           <input
@@ -134,14 +144,21 @@ if __name__ == "__main__":
         title="Incorrect"
         message="The flag you entered is incorrect. Please try again."
       />
-      {/* <HintModal
+       <HintModal
         show={showHint}
         onClose={() => setShowHint(false)}
         title="Hint"
-        message=" Use the first alphabet of each word."
+        message="Execute this code using an online python compiler"
         id={5}
-      /> */}
+      />
       <SuccessModal show={showSuccess} />
+      <ConfirmationModal
+        show={showConfirmation}
+        onClose={() => setShowConfirmation(false)}
+        onConfirm={handleConfirmHint}
+        title="Are you sure?"
+        message="Viewing the hint will affect your points. Do you want to proceed?"
+      />
     </>
   );
 }
