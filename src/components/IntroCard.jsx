@@ -24,7 +24,7 @@ export default function IntroCard({ login }) {
       localStorage.setItem(`${usernameDisp}_DATA`, JSON.stringify(obj));
       setUserData(obj);
     } else {
-      setUserData(data);
+      setUserData(JSON.parse(data));
     }
     login();
   }
