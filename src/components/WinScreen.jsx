@@ -34,7 +34,7 @@ export default function WinScreen() {
       <div className="w-11/12 max-w-md bg-slate-800 bg-opacity-50 p-5 py-8 rounded-xl flex flex-col justify-center items-center">
         <p>All Flags Captured!</p>
         <img src={Crown} className="w-36" />
-        <p className="text-base">Hints Used:</p>
+        <p className="text-base mt-2">Hints Used:</p>
         <p className="mt-1">{`${hintNumber}/5`}</p>
         <p className="text-base mt-2">TIme Taken:</p>
         <p className="mt-1">{Time}</p>

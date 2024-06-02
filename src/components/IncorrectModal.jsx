@@ -4,8 +4,8 @@ function Modal({ show, onClose, title, message }) {
   if (!show) return null;
 
   return (
-    <div className="fixed  flex items-center justify-center  bg-opacity-50 mb-64  text-black ">
-      <div className="bg-white shadow-lg rounded-lg  p-4  mb-64 border-t-red-400 border-t-8">
+    <div className="fixed w-full h-full flex items-center justify-center top-0 text-black">
+      <div className="bg-white shadow-lg rounded-lg p-4 border-t-red-400 border-t-8 w-11/12 max-w-md">
         <h2 className="text-xl ">{title}</h2>
         <p className="text-sm">{message}</p>
         <button

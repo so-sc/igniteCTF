@@ -15,7 +15,7 @@ export default function Challenge1() {
   const [showModal, setShowModal] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false); 
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const user = localStorage.getItem("USER");
   const [isComplete, setIsComplete] = useState(
     JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c1
@@ -119,7 +119,7 @@ export default function Challenge1() {
         title="Incorrect"
         message="The flag you entered is incorrect. Please try again."
       />
-     <HintModal
+      <HintModal
         show={showHint}
         onClose={() => setShowHint(false)}
         title="Hint"
