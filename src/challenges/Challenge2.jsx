@@ -65,22 +65,21 @@ export default function Challenge2() {
           </p>
 
           <div className="w-full h-10 bg-slate-800 mt-4 rounded-tr-xl rounded-tl-xl flex items-center justify-end">
-            <div
-              className="mr-3 btn btn-link"
+            <img
+              src={ClipBoard}
+              alt="Clipboard Icon"
+              className="mr-2 w-16 btn btn-link"
               style={{
-                backgroundImage: `url(${ClipBoard})`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
+                cursor: "pointer",
               }}
               onClick={copyToClipboard}
             />
           </div>
 
           <p className="text-base font-mono bg-slate-900 p-2 py-4 rounded-br-xl rounded-bl-xl text-center text-slate-300">
-            01110011 01101111 01110011 01100011 01000011 01010100 01000110
-            01111011 01101001 01011111 00111100 00110011 01011111 01010011
-            01001111 01010011 01000011 01111101 00001010
+            01101001 01100111 01101110 01101001 01110100 01100101 01000011
+            01010100 01000110 01111011 01101001 01011111 00111100 00110011
+            01011111 01010011 01001111 01010011 01000011 01111101
           </p>
           <p className="text-sm text-justify px-3 mt-5">
             {`Use the word as the flag in the format:`}
