@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
 import ClipBoard from "../assets/clipboard.svg";
 import IncorrectModal from "../components/IncorrectModal";
@@ -24,14 +24,16 @@ export default function Challenge2() {
   const [showModal, setShowModal] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false); 
-  const user = localStorage.getItem("USER");
-  const [isComplete, setIsComplete] = useState(
-    JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c2
-  );
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isComplete, setIsComplete] = useState(null);
   const answer = "igniteCTF{i_<3_SOSC}";
 
-  const { completeChallenge } = useContext(ChallengeContext);
+  const { completeChallenge, userData } = useContext(ChallengeContext);
+
+  useEffect(() => {
+    if (!userData) return;
+    setIsComplete(userData.c.c2);
+  }, [userData]);
 
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {

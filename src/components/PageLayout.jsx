@@ -6,13 +6,14 @@ import { ChallengeContext } from "./ProgressContext";
 
 export default function PageLayout({ children }) {
   const [showRules, setShowRules] = useState(false);
-  const { progress, userData } = useContext(ChallengeContext);
+  const { progress, username, isLoaded } = useContext(ChallengeContext);
 
   useEffect(() => {
-    if (!userData) {
+    // console.log(username);
+    if (isLoaded && !username) {
       setShowRules(true);
     }
-  }, [userData]);
+  }, [username, isLoaded]);
 
   return (
     <>

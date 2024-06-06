@@ -16,13 +16,15 @@ export default function Challenge1() {
   const [showHint, setShowHint] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const user = localStorage.getItem("USER");
-  const [isComplete, setIsComplete] = useState(
-    JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c1
-  );
+  const [isComplete, setIsComplete] = useState(false);
   const answer = "igniteCTF{byte}";
 
-  const { completeChallenge } = useContext(ChallengeContext);
+  const { completeChallenge, userData } = useContext(ChallengeContext);
+
+  useEffect(() => {
+    if (!userData) return;
+    setIsComplete(userData.c.c1);
+  }, [userData]);
 
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
@@ -33,9 +35,6 @@ export default function Challenge1() {
       setShowModal(true);
     }
   }
-  useEffect(() => {
-    // console.log(isComplete);
-  }, [isComplete]);
 
   const handleHintClick = () => {
     setShowConfirmation(true); // Show confirmation modal when hint button is clicked

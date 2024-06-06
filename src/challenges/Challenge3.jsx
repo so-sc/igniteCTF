@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import BackButton from "../components/BackButton";
 import SOSC from "../assets/SOSC.png";
 import { toPng } from "html-to-image";
@@ -30,14 +36,16 @@ export default function Challenge3() {
   const [showModal, setShowModal] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false); 
-  const user = localStorage.getItem("USER");
-  const [isComplete, setIsComplete] = useState(
-    JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c3
-  );
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isComplete, setIsComplete] = useState(null);
   const answer = "igniteCTF{our_tiny_little_secret}";
 
-  const { completeChallenge } = useContext(ChallengeContext);
+  const { completeChallenge, userData } = useContext(ChallengeContext);
+
+  useEffect(() => {
+    if (!userData) return;
+    setIsComplete(userData.c.c3);
+  }, [userData]);
 
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
@@ -125,7 +133,7 @@ export default function Challenge3() {
         title="Incorrect"
         message="The flag you entered is incorrect. Please try again."
       />
-       <HintModal
+      <HintModal
         show={showHint}
         onClose={() => setShowHint(false)}
         title="Hint"
