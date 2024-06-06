@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
 import IncorrectModal from "../components/IncorrectModal";
 import HintModal from "../components/HintModal";
@@ -11,14 +11,16 @@ export default function Challenge4() {
   const [showModal, setShowModal] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showHint, setShowHint] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false); 
-  const user = localStorage.getItem("USER");
-  const [isComplete, setIsComplete] = useState(
-    JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c4
-  );
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isComplete, setIsComplete] = useState(null);
   const answer = "igniteCTF{old_is_gold}";
 
-  const { completeChallenge } = useContext(ChallengeContext);
+  const { completeChallenge, userData } = useContext(ChallengeContext);
+
+  useEffect(() => {
+    if (!userData) return;
+    setIsComplete(userData.c.c4);
+  }, [userData]);
 
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
@@ -30,7 +32,7 @@ export default function Challenge4() {
     }
   }
   const handleHintClick = () => {
-    setShowConfirmation(true); 
+    setShowConfirmation(true);
   };
 
   const handleConfirmHint = () => {
@@ -60,7 +62,10 @@ export default function Challenge4() {
             {`Use the word as the flag in the format:`}
           </p>
           <p className="text-sm text-justify px-3 text-teal-500">{`igniteCTF{XXXX}`}</p>
-          <div className="mt-5 rounded-lg text-center bg-green-500 text-white" onClick={handleHintClick}>
+          <div
+            className="mt-5 rounded-lg text-center bg-green-500 text-white"
+            onClick={handleHintClick}
+          >
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div>
         </div>
@@ -93,7 +98,7 @@ export default function Challenge4() {
         title="Incorrect"
         message="The flag you entered is incorrect. Please try again."
       />
-         <HintModal
+      <HintModal
         show={showHint}
         onClose={() => setShowHint(false)}
         title="Hint"
@@ -108,7 +113,6 @@ export default function Challenge4() {
         title="Are you sure?"
         message="Viewing the hint will affect your points. Do you want to proceed?"
       />
-
     </>
   );
 }

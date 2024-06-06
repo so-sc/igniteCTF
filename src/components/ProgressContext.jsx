@@ -3,14 +3,21 @@ import React, { createContext, useEffect, useState } from "react";
 export const ChallengeContext = createContext();
 
 export const ChallengeProvider = ({ children }) => {
-  const [username, setUsername] = useState(localStorage.getItem(`USER`));
-  const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem(`${username}_DATA`))
-  );
+  const [username, setUsername] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [challengeData, setChallengeData] = useState(null);
   const [progress, setProgress] = useState(0);
   const [hintsUsed, setHintsUsed] = useState(null);
   const [hintNumber, setHintNumber] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setUsername(localStorage.getItem("USER"));
+    setUserData(
+      JSON.parse(localStorage.getItem(`${localStorage.getItem("USER")}_DATA`))
+    );
+    setIsLoaded(true);
+  }, [username]);
 
   useEffect(() => {
     // console.log(userData);
@@ -93,6 +100,7 @@ export const ChallengeProvider = ({ children }) => {
         completeChallenge,
         useHint,
         hintNumber,
+        isLoaded,
       }}
     >
       {children}

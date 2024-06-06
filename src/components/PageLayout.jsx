@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../styles/global.css";
 import soscIcon from "../assets/sosc.svg";
 import RulesModal from "./RulesModal";
@@ -6,7 +6,14 @@ import { ChallengeContext } from "./ProgressContext";
 
 export default function PageLayout({ children }) {
   const [showRules, setShowRules] = useState(false);
-  const { progress } = useContext(ChallengeContext);
+  const { progress, username, isLoaded } = useContext(ChallengeContext);
+
+  useEffect(() => {
+    // console.log(username);
+    if (isLoaded && !username) {
+      setShowRules(true);
+    }
+  }, [username, isLoaded]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -44,13 +44,15 @@ if __name__ == "__main__":
   const [showSuccess, setShowSuccess] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const user = localStorage.getItem("USER");
-  const [isComplete, setIsComplete] = useState(
-    JSON.parse(localStorage.getItem(`${user}_DATA`)).c.c5
-  );
+  const [isComplete, setIsComplete] = useState(null);
   const answer = "igniteCTF{time_to_code}";
 
-  const { completeChallenge } = useContext(ChallengeContext);
+  const { completeChallenge, userData } = useContext(ChallengeContext);
+
+  useEffect(() => {
+    if (!userData) return;
+    setIsComplete(userData.c.c5);
+  }, [userData]);
 
   function handleClick() {
     if (userFlag.trim().toLowerCase() === answer.toLowerCase()) {
@@ -62,7 +64,7 @@ if __name__ == "__main__":
     }
   }
   const handleHintClick = () => {
-    setShowConfirmation(true); 
+    setShowConfirmation(true);
   };
 
   const handleConfirmHint = () => {
@@ -82,7 +84,8 @@ if __name__ == "__main__":
           </p>
           <div
             className="w-full h-10 mt-4 rounded-tr-xl rounded-tl-xl flex items-center justify-end"
-            style={{ backgroundColor: "rgb(68, 68, 68)" }}>
+            style={{ backgroundColor: "rgb(68, 68, 68)" }}
+          >
             <div
               className="mr-3 btn btn-link"
               style={{
@@ -111,7 +114,10 @@ if __name__ == "__main__":
             {`Use the word as the flag in the format:`}
           </p>
           <p className="text-sm text-justify px-3 text-teal-500">{`igniteCTF{XXXX}`}</p>
-          <div className="mt-5 rounded-lg text-center bg-green-500 text-white" onClick={handleHintClick}>
+          <div
+            className="mt-5 rounded-lg text-center bg-green-500 text-white"
+            onClick={handleHintClick}
+          >
             <p className="text-sm px-4 py-2 cursor-pointer">HINT</p>
           </div>
         </div>
@@ -144,7 +150,7 @@ if __name__ == "__main__":
         title="Incorrect"
         message="The flag you entered is incorrect. Please try again."
       />
-       <HintModal
+      <HintModal
         show={showHint}
         onClose={() => setShowHint(false)}
         title="Hint"
